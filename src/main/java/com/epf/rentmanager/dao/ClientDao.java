@@ -28,7 +28,22 @@ public class ClientDao {
     }
 
     public long create(Client client) throws DaoException {
-        return 0;
+
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement ps= connection.prepareStatement(CREATE_CLIENT_QUERY);
+            ps.setString(1, client.getFirst_name());
+            ps.setString(2, client.getLast_name());
+            ps.setString(3, client.getEmail());
+            ps.setObject(4, client.getBirth_date());
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new DaoException();
+        }
+        return  client.getId();
     }
 
     public long delete(Client client) throws DaoException {
