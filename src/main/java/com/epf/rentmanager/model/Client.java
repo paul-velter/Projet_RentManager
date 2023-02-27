@@ -16,6 +16,14 @@ public class Client {
     }
 
     public Client(long id, String first_name, String last_name, String email, LocalDate birth_date) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.birth_date = birth_date;
+    }
+
+    public Client(String first_name, String last_name, String email, LocalDate birth_date) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -65,9 +73,11 @@ public class Client {
     @Override
     public String toString() {
         return "Client : \n" +
+                "Id : " + id + "\n" +
                 "first name : " + first_name + "\n" +
                 "last name : " + last_name + "\n" +
                 "email : " + email + "\n" +
                 "birth date : " + birth_date + "\n\n";
     }
+
 }

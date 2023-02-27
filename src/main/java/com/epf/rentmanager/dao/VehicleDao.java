@@ -36,7 +36,20 @@ public class VehicleDao {
 
 
     public long create(Vehicle vehicle) throws DaoException {
-        return 0;
+
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement ps= connection.prepareStatement(CREATE_VEHICLE_QUERY);
+            ps.setString(1, vehicle.getConstructor());
+            ps.setInt(2, vehicle.getNb_places());
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new DaoException();
+        }
+        return  vehicle.getId();
     }
 
     public long delete(Vehicle vehicle) throws DaoException {
@@ -44,7 +57,26 @@ public class VehicleDao {
     }
 
     public Vehicle findById(long id) throws DaoException {
-        return new Vehicle();
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(FIND_VEHICLE_QUERY);
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+            String construteur = rs.getString("constructeur");
+            String modele = "Empty";
+            int nb_places = rs.getInt("nb_places");
+
+            ps.close();
+            rs.close();
+            connection.close();
+
+            return new Vehicle(id, construteur, modele, nb_places);
+
+        } catch (SQLException e) {
+            throw new DaoException();
+        }
     }
 
     public List<Vehicle> findAll() throws DaoException {
@@ -62,6 +94,9 @@ public class VehicleDao {
 
                 vehicles.add(new Vehicle(id, construteur, modele, nb_places));
             }
+            rs.close();
+            connection.close();
+
         } catch (SQLException e) {
             throw new DaoException();
         }
@@ -70,4 +105,24 @@ public class VehicleDao {
 
     }
 
+    public int count() throws DaoException {
+        int count = 0;
+        try {
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(FIND_VEHICLES_QUERY);
+
+            while (rs.next()) {
+                count += 1;
+            }
+
+            rs.close();
+            connection.close();
+
+            return count;
+
+        } catch (SQLException e) {
+            throw new DaoException();
+        }
+    }
 }

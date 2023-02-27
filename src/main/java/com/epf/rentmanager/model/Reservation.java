@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Reservation {
 
     public long id;
-    public Client client_id;
-    public Vehicle vehicle_id;
+    public long client_id;
+    public long vehicle_id;
 
     public LocalDate start;
 
@@ -16,7 +16,7 @@ public class Reservation {
 
     }
 
-    public Reservation(long id, Client client_id, Vehicle vehicle_id, LocalDate start, LocalDate end) {
+    public Reservation(long id, long client_id, long vehicle_id, LocalDate start, LocalDate end) {
         this.id = id;
         this.client_id = client_id;
         this.vehicle_id = vehicle_id;

@@ -2,4 +2,14 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+
+<servelet>
+		<sevelet-name>HomeServelet</sevelet-name>
+		<servelet-class>ui.servelet.HomeServelet</servelet-class>
+	</servelet>
+
+	<servelet-mapping>
+		<sevelet-name>HomeServelet</sevelet-name>
+		<url-pattern>/home</url-pattern>
+	</servelet-mapping>
 </web-app>
