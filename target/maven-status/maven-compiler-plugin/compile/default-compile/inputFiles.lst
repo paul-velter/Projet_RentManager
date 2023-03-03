@@ -10,7 +10,10 @@ C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\main\Main.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationServlet.java

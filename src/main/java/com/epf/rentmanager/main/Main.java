@@ -16,23 +16,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Client client = null;
+        Client client = new Client("prénomclient2","nomclient2","nom.prérom@gmail.com",LocalDate.now());
 //        try {
 //            client = ClientService.getInstance().findById(5);
 //        } catch (ServiceException e) {
 //            e.printStackTrace();
 //        }
-//        try {
-//            System.out.println(ClientService.getInstance().create(client));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            System.out.println(ClientService.getInstance().delete(client));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
+        /*
+        try {
+            System.out.println(ClientService.getInstance().create(client));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            System.out.println(ClientService.getInstance().delete(client));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
 //
 //        try {
 //            System.out.println(ClientService.getInstance().findAll());

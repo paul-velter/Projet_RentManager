@@ -20,32 +20,22 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ClientService clientService = ClientService.getInstance();
-		int nbClients = 0;
 		try {
-			nbClients = clientService.count();
-		} catch (ServiceException e) {
-			throw new ServletException();
-		}
-		request.setAttribute("nbClients", nbClients);
+			ClientService clientService = ClientService.getInstance();
+			int nbClients = clientService.count();
+			request.setAttribute("nbClients", nbClients);
 
-		VehicleService vehicleService = VehicleService.getInstance();
-		int nbVehicles = 0;
-		try {
-			nbVehicles = vehicleService.count();
-		} catch (ServiceException e) {
-			throw new ServletException();
-		}
-		request.setAttribute("nbVehicles", nbVehicles);
+			VehicleService vehicleService = VehicleService.getInstance();
+			int nbVehicles = vehicleService.count();
+			request.setAttribute("nbVehicles", nbVehicles);
 
-		ReservationService reservationService = ReservationService.getInstance();
-		int nbReservations = 0;
-		try {
-			nbReservations = reservationService.count();
+			ReservationService reservationService = ReservationService.getInstance();
+			int nbReservations = reservationService.count();
+			request.setAttribute("nbReservations", nbReservations);
+
 		} catch (ServiceException e) {
 			throw new ServletException();
 		}
-		request.setAttribute("nbReservations", nbReservations);
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
 	}
