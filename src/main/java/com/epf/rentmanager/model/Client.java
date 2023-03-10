@@ -11,7 +11,6 @@ public class Client {
     public String email;
     public LocalDate birth_date;
 
-
     public Client() {
     }
 

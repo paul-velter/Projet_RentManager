@@ -46,7 +46,7 @@ public class ReservationService {
         }
     }
 
-    public List<Reservation> findResaByClientId(Client clientId) throws ServiceException {
+    public List<Reservation> findResaByClientId(long clientId) throws ServiceException {
         try {
             return ReservationDao.getInstance().findResaByClientId(clientId);
         } catch (DaoException e) {
@@ -54,7 +54,7 @@ public class ReservationService {
         }
     }
 
-    public List<Reservation> findResaByVehicleId(Vehicle vehicleId) throws ServiceException {
+    public List<Reservation> findResaByVehicleId(long vehicleId) throws ServiceException {
         try {
             return ReservationDao.getInstance().findResaByVehicleId(vehicleId);
         } catch (DaoException e) {

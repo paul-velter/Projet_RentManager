@@ -17,10 +17,10 @@ import com.epf.rentmanager.persistence.ConnectionManager;
 
 public class VehicleDao {
 
-    private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+    private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?);";
     private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-    private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-    private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
+    private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
+    private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
     private static VehicleDao instance = null;
 
     private VehicleDao() {
@@ -65,7 +65,7 @@ public class VehicleDao {
 
             rs.next();
             String construteur = rs.getString("constructeur");
-            String modele = "Empty";
+            String modele = rs.getString("modele");
             int nb_places = rs.getInt("nb_places");
 
             ps.close();
@@ -89,7 +89,7 @@ public class VehicleDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String construteur = rs.getString("constructeur");
-                String modele = "Empty";
+                String modele = rs.getString("modele");
                 int nb_places = rs.getInt("nb_places");
 
                 vehicles.add(new Vehicle(id, construteur, modele, nb_places));

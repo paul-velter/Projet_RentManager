@@ -34,16 +34,17 @@
                                     <th>Fin</th>
                                     <th>Action</th>
                                 </tr>
+
                                 <tr>
-                                    <c:forEach items="${reservations}" var="reservation">
-                                    <td>reservation.id</td>
-                                    <td>Renault Clio</td>
-                                    <td>John Doe</td>
-                                    <td>reservation.start</td>
-                                    <td>reservation.end</td>
+                                <c:forEach items="${reservations}" var= "reservation">
+                                    <td>${reservation.id}</td>
+                                    <td>${reservation.getConstructroModeleVehicle(reservation.vehicle_id)}</td>
+                                    <td>${reservation.getFirtLastNameClient(reservation.client_id)}</td>
+                                    <td>${reservation.start}</td>
+                                    <td>${reservation.end}</td>
                                     <td>
-                                        <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=1">
-                                            <i class="fa fa-play"></i>
+                                        <a class="btn btn-primary" href="#">
+                                        <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success disabled" href="#">
                                             <i class="fa fa-edit"></i>
@@ -54,6 +55,7 @@
                                     </td>
                                 </tr>
                                 </c:forEach>
+
                             </table>
                         </div>
                         <!-- /.box-body -->

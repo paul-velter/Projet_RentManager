@@ -5,9 +5,13 @@ C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\DetailClientServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\AddReservationServlet.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\AddVehicleServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\AddClientServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\main\Main.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleServlet.java

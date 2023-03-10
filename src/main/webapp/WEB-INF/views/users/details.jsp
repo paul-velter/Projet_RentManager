@@ -20,7 +20,7 @@
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <h3 class="profile-username text-center">John Doe (john.doe@epf.fr)</h3>
+                            <h3 class="profile-username text-center">${client.first_name} ${client.last_name} (${client.email})</h3>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
@@ -53,14 +53,26 @@
                                             <th>Date de fin</th>
                                         </tr>
                                         <tr>
+                                        <c:forEach items="${reservations}" var="reservation">
+                                            <td>${reservation.vehicle_id}.</td>
+                                            <td>${reservation.start}</td>
+                                            <td>${reservation.end}</td>
+                                            <td>
+                                                <a class="btn btn-primary disabled" href="car-detail.html">
+                                                    <i class="fa fa-play"></i>
+                                                </a>
+                                                <a class="btn btn-success disabled" href="#">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="btn btn-danger disabled" href="#">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </c:forEach>
+                                        <tr>
                                             <td>3.</td>
                                             <td>Renault Megane</td>
-                                            <td>10/01/2018</td>
-                                            <td>12/01/2018</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7.</td>
-                                            <td>Peugeot 207</td>
                                             <td>10/01/2018</td>
                                             <td>12/01/2018</td>
                                         </tr>

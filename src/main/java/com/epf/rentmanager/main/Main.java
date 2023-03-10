@@ -28,13 +28,23 @@ public class Main {
         } catch (ServiceException e) {
             e.printStackTrace();
         }*/
-
         try {
-            System.out.println(ClientService.getInstance().delete(client));
+            System.out.println(ReservationService.getInstance().findAll());
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-//
+//        try {
+//            System.out.println(ClientService.getInstance().delete(client));
+//        } catch (ServiceException e) {
+//            e.printStackTrace();
+//        }
+
+/*       try {
+            System.out.println(ReservationService.getInstance().findResaByClientId(1));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+//*/
 //        try {
 //            System.out.println(ClientService.getInstance().findAll());
 //        } catch (ServiceException e) {
@@ -65,11 +75,11 @@ public class Main {
 //        } catch (ServiceException e) {
 //            e.printStackTrace();
 //        }
-    try {
-            System.out.println(ClientService.getInstance().count());
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
+//    try {
+//            System.out.println(ClientService.getInstance().count());
+//        } catch (ServiceException e) {
+//            e.printStackTrace();
+//        }
     }
 }
 
