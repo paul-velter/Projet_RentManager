@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet("/users/create")
+@WebServlet("/users/create")//TODO : Ajouter un client
 public class AddClientServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -32,9 +32,9 @@ public class AddClientServlet extends HttpServlet {
             LocalDate birth_date = LocalDate.parse(request.getParameter("birth_date"));
 
             ClientService clientService = ClientService.getInstance();
-            request.setAttribute("clients", clientService.findAll());
             Client client = new Client(first_name, last_name, email, birth_date);
             clientService.create(client);
+            request.setAttribute("clients", clientService.findAll());
 
         } catch (ServiceException e) {
             throw new ServletException();
@@ -43,4 +43,3 @@ public class AddClientServlet extends HttpServlet {
         }
     }
 }
-

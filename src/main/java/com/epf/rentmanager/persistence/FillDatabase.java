@@ -43,10 +43,10 @@ public class FillDatabase {
 
             // Remplissage de la base avec des Vehicules et des Clients
             Statement stmt = connection.createStatement();
-            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Renault', 'Megane', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Peugeot','5008', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Seat','Leon', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Nissan','Qashqai', 4)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Renault', 'Clio', 5)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Peugeot','206', 5)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Volkswagen','Touran', 7)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES('Nissan','Qashqai', 5)");
             
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Dupont', 'Jean', 'jean.dupont@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Morin', 'Sabrina', 'sabrina.morin@email.com', '1988-01-22')");

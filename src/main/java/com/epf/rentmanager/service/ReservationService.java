@@ -1,13 +1,9 @@
 package com.epf.rentmanager.service;
 
-import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
-import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
-import com.epf.rentmanager.model.Vehicle;
 
 import java.util.List;
 
@@ -30,17 +26,17 @@ public class ReservationService {
     }
 
 
-    public long create(Client client) throws ServiceException {
+    public long create(Reservation reservation) throws ServiceException {
         try {
-            return ClientDao.getInstance().create(client);
+            return ReservationDao.getInstance().create(reservation);
         } catch (DaoException e) {
             throw new ServiceException();
         }
     }
 
-    public long delete(Client client) throws ServiceException {
+    public long delete(Reservation reservation) throws ServiceException {
         try {
-            return ClientDao.getInstance().delete(client);
+            return ReservationDao.getInstance().delete(reservation);
         } catch (DaoException e) {
             throw new ServiceException();
         }
@@ -52,6 +48,7 @@ public class ReservationService {
         } catch (DaoException e) {
             throw new ServiceException();
         }
+
     }
 
     public List<Reservation> findResaByVehicleId(long vehicleId) throws ServiceException {
@@ -78,4 +75,13 @@ public class ReservationService {
             throw new ServiceException();
         }
     }
+
+    public int countResaByClientId(long clientId) throws ServiceException {
+        try {
+            return ReservationDao.getInstance().countResaByClientId(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
 }

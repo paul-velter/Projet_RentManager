@@ -24,10 +24,10 @@
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Reservation(s)</b> <a class="pull-right">2</a>
+                                    <b>Reservation(s)</b> <a class="pull-right">${nbClients}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">3</a>
+                                    <b>Voiture(s)</b> <a class="pull-right">${nbVehicles}</a>
                                 </li>
                             </ul>
                         </div>
@@ -52,30 +52,16 @@
                                             <th>Date de debut</th>
                                             <th>Date de fin</th>
                                         </tr>
+
                                         <tr>
-                                        <c:forEach items="${reservations}" var="reservation">
-                                            <td>${reservation.vehicle_id}.</td>
+                                        <c:forEach items="${listereservations}" var= "reservation">
+                                            <td>${reservation.id}</td>
+                                            <td>${reservation.getConstructroModeleVehicle(reservation.vehicle_id)}</td>
                                             <td>${reservation.start}</td>
                                             <td>${reservation.end}</td>
-                                            <td>
-                                                <a class="btn btn-primary disabled" href="car-detail.html">
-                                                    <i class="fa fa-play"></i>
-                                                </a>
-                                                <a class="btn btn-success disabled" href="#">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a class="btn btn-danger disabled" href="#">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </td>
                                         </tr>
                                         </c:forEach>
-                                        <tr>
-                                            <td>3.</td>
-                                            <td>Renault Megane</td>
-                                            <td>10/01/2018</td>
-                                            <td>12/01/2018</td>
-                                        </tr>
+
                                     </table>
                                 </div>
                             </div>

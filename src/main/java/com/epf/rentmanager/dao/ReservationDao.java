@@ -34,7 +34,19 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 		
 	public long create(Reservation reservation) throws DaoException {
-		return 0;
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement ps = connection.prepareStatement(CREATE_RESERVATION_QUERY);) {
+
+			ps.setLong(1, reservation.getClient_id());
+			ps.setLong(2, reservation.getVehicle_id());
+			ps.setObject(3, reservation.getStart());
+			ps.setObject(4,reservation.getEnd());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DaoException();
+		}
+		return reservation.getId();
 	}
 	
 	public long delete(Reservation reservation) throws DaoException {
@@ -51,13 +63,12 @@ public class ReservationDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				long id = rs.getInt("id");
-				long client_id = rs.getLong("client_id");
+				long id = rs.getLong("id");
 				long vehicle_id = rs.getLong("vehicle_id");
 				LocalDate start = rs.getDate("debut").toLocalDate();
 				LocalDate end = rs.getDate("fin").toLocalDate();
 
-				reservations.add(new Reservation(id, client_id, vehicle_id, start, end));
+				reservations.add(new Reservation(id, clientId, vehicle_id, start, end));
 			}
 
 		} catch (SQLException e) {
@@ -122,6 +133,28 @@ public class ReservationDao {
 			Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(FIND_RESERVATIONS_QUERY);
+
+			while (rs.next()) {
+				count += 1;
+			}
+
+			rs.close();
+			connection.close();
+
+			return count;
+
+		} catch (SQLException e) {
+			throw new DaoException();
+		}
+	}
+
+	public int countResaByClientId(long clientId) throws DaoException{
+		int count = 0;
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+			ps.setLong(1, clientId);
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				count += 1;

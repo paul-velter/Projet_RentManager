@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/users/details")
+@WebServlet("/users/details")//TODO : Afficher le nb de voiture Afficher le détail voiture (a quoi ça corresspond)
 public class DetailClientServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -22,8 +22,11 @@ public class DetailClientServlet extends HttpServlet {
             ClientService clientService = ClientService.getInstance();
             request.setAttribute("client", clientService.findById(id));
 
-/*            ReservationService reservationService = ReservationService.getInstance();
-            request.setAttribute("reservations", reservationService.findResaByClientId(id));*/
+            ReservationService reservationService = ReservationService.getInstance();
+            int nbClients = reservationService.countResaByClientId(id);
+            request.setAttribute("nbClients", nbClients);
+            request.setAttribute("listereservations", reservationService.findResaByClientId(id));
+
 
         } catch (ServiceException e) {
             throw new ServletException();

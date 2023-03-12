@@ -4,7 +4,6 @@ import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
 
-import javax.lang.model.element.NestingKind;
 import java.time.LocalDate;
 
 public class Reservation {
@@ -23,6 +22,13 @@ public class Reservation {
 
     public Reservation(long id, long client_id, long vehicle_id, LocalDate start, LocalDate end) {
         this.id = id;
+        this.client_id = client_id;
+        this.vehicle_id = vehicle_id;
+        this.start = start;
+        this.end = end;
+    }
+
+    public Reservation(long client_id, long vehicle_id, LocalDate start, LocalDate end) {
         this.client_id = client_id;
         this.vehicle_id = vehicle_id;
         this.start = start;

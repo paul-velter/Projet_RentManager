@@ -17,7 +17,7 @@ import com.epf.rentmanager.persistence.ConnectionManager;
 
 public class VehicleDao {
 
-    private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?);";
+    private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?, ?);";
     private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
     private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
     private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
@@ -41,7 +41,8 @@ public class VehicleDao {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement ps= connection.prepareStatement(CREATE_VEHICLE_QUERY);
             ps.setString(1, vehicle.getConstructor());
-            ps.setInt(2, vehicle.getNb_places());
+            ps.setString(2, vehicle.getModele());
+            ps.setInt(3, vehicle.getNb_places());
             ps.executeUpdate();
             ps.close();
             connection.close();
