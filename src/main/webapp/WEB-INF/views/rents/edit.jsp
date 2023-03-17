@@ -14,7 +14,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Utilisateurs
+                Reservations
             </h1>
         </section>
 
@@ -28,37 +28,45 @@
                         <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="last_name" class="col-sm-2 control-label">Nom</label>
+                                    <label for="car" class="col-sm-2 control-label">Voiture</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom">
+                                        <select class="form-control" id="car" name="car" value="${reservation.vehicle_id}">
+                                            <c:forEach items="${vehicles}" var= "vehicle">
+                                                <option value="${vehicle.id}">${vehicle.constructor} ${vehicle.modele}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="first_name" class="col-sm-2 control-label">Prenom</label>
+                                    <label for="client" class="col-sm-2 control-label">Client</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom">
+                                      <select class="form-control" id="client" name="client" value="${reservation.client_id}">
+                                        <c:forEach items="${clients}" var= "client">
+                                            <option value="${client.id}">${client.first_name} ${client.last_name}</option>
+                                        </c:forEach>
+                                      </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">Email</label>
+                                    <label for="begin" class="col-sm-2 control-label">Date de debut</label>
 
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                        <input type="date" class="form-control" id="begin" name="begin" value="${reservation.start}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="birth_date" class="col-sm-2 control-label">Date de naissance</label>
+                                    <label for="end" class="col-sm-2 control-label">Date de fin</label>
 
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date">
+                                        <input type="date" class="form-control" id="end" name="end" value="${reservation.end}">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Ajouter</button>
+                                <button type="submit" class="btn btn-info pull-right">Modifier</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -76,5 +84,13 @@
 <!-- ./wrapper -->
 
 <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script>
+    $(function () {
+        $('[data-mask]').inputmask()
+    });
+</script>
 </body>
 </html>

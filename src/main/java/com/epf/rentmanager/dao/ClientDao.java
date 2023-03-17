@@ -39,16 +39,16 @@ public class ClientDao {
             ps.setObject(4, client.getBirth_date());
             ps.executeUpdate();
 
+            return client.getId();
+
         } catch (SQLException e) {
             throw new DaoException();
         }
-        return client.getId();
     }
 
     public long edit(Client client) throws DaoException {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement ps = connection.prepareStatement(EDIT_CLIENT_QUERY);) {
-
 
             ps.setString(1, client.getFirst_name());
             ps.setString(2, client.getLast_name());
@@ -66,17 +66,11 @@ public class ClientDao {
 
     public long delete(Client client) throws DaoException {
 
-        try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement ps = connection.prepareStatement(DELETE_CLIENT_QUERY);){
+        try(Connection connection = ConnectionManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(DELETE_CLIENT_QUERY);){
 
             ps.setLong(1, client.getId());
-            ResultSet rs = ps.executeQuery();
-
-            rs.next();
-
-            ps.close();
-            rs.close();
-            connection.close();
+            ps.executeUpdate();
 
             return 0;
 
@@ -122,10 +116,11 @@ public class ClientDao {
                 clients.add(new Client(id, nom, prenom, email, date));
             }
 
+            return clients;
+
         } catch (SQLException e) {
             throw new DaoException();
         }
-        return clients;
     }
 
     public int count() throws DaoException {
@@ -144,7 +139,6 @@ public class ClientDao {
             throw new DaoException();
         }
     }
-
 }
 
 

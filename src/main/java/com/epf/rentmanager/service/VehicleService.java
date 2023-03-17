@@ -35,6 +35,21 @@ public class VehicleService {
 		}
 	}
 
+	public long edit(Vehicle vehicle) throws ServiceException {
+		try {
+			return VehicleDao.getInstance().edit(vehicle);
+		} catch (DaoException e) {
+			throw new ServiceException();
+		}
+	}
+	public long delete(Vehicle vehicle) throws ServiceException {
+		try {
+			return VehicleDao.getInstance().delete(vehicle);
+		} catch (DaoException e) {
+			throw new ServiceException();
+		}
+	}
+
 	public Vehicle findById(long id) throws ServiceException {
 		try {
 			return VehicleDao.getInstance().findById(id);

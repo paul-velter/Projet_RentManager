@@ -25,16 +25,17 @@ public class ClientService {
 		return instance;
 	}
 
-	public long edit(Client client) throws ServiceException {
+	public long create(Client client) throws ServiceException {
 		try {
-			return ClientDao.getInstance().edit(client);
+			return ClientDao.getInstance().create(client);
 		} catch (DaoException e){
 			throw new ServiceException();
 		}
 	}
-	public long create(Client client) throws ServiceException {
+
+	public long edit(Client client) throws ServiceException {
 		try {
-			return ClientDao.getInstance().create(client);
+			return ClientDao.getInstance().edit(client);
 		} catch (DaoException e){
 			throw new ServiceException();
 		}
@@ -62,7 +63,6 @@ public class ClientService {
 		} catch (DaoException e){
 			throw new ServiceException();
 		}
-
 	}
 
 	public int count() throws ServiceException{

@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ReservationService {
 
-
     private ReservationDao reservationDao;
     public static ReservationService instance;
 
@@ -25,10 +24,16 @@ public class ReservationService {
         return instance;
     }
 
-
     public long create(Reservation reservation) throws ServiceException {
         try {
             return ReservationDao.getInstance().create(reservation);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+    public long edit(Reservation reservation) throws ServiceException {
+        try {
+            return ReservationDao.getInstance().edit(reservation);
         } catch (DaoException e) {
             throw new ServiceException();
         }
@@ -42,13 +47,19 @@ public class ReservationService {
         }
     }
 
+    public Reservation findById(long id) throws ServiceException {
+        try {
+            return ReservationDao.getInstance().findById(id);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
     public List<Reservation> findResaByClientId(long clientId) throws ServiceException {
         try {
             return ReservationDao.getInstance().findResaByClientId(clientId);
         } catch (DaoException e) {
             throw new ServiceException();
         }
-
     }
 
     public List<Reservation> findResaByVehicleId(long vehicleId) throws ServiceException {
@@ -65,7 +76,6 @@ public class ReservationService {
         } catch (DaoException e) {
             throw new ServiceException();
         }
-
     }
 
     public int count() throws ServiceException {

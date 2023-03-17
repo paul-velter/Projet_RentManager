@@ -27,7 +27,6 @@ public class DetailClientServlet extends HttpServlet {
             request.setAttribute("nbClients", nbClients);
             request.setAttribute("listereservations", reservationService.findResaByClientId(id));
 
-
         } catch (ServiceException e) {
             throw new ServletException();
         }finally {

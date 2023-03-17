@@ -17,69 +17,44 @@ public class Main {
     public static void main(String[] args) {
 
         Client client = new Client(8,"client8","client8","nom.prérom@gmail.com",LocalDate.now());
-//        try {
-//            client = ClientService.getInstance().findById(5);
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-        try {
-            System.out.println(ClientService.getInstance().edit(client));
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
 
         try {
             System.out.println(ClientService.getInstance().findAll());
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-//        try {
-//            System.out.println(ClientService.getInstance().delete(client));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
 
-//      try {
-//            System.out.println(ReservationService.getInstance().findResaByClientId(1));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-
-//        try {
-//            System.out.println(ClientService.getInstance().findAll());
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-
-//        try {
-//            System.out.println(ClientService.getInstance().findById(1));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-
-/*        Vehicle vehicle = new Vehicle("constructeur1", "modèle1", 5);
         try {
-            System.out.println(VehicleService.getInstance().create(vehicle));
+            System.out.println(ClientService.getInstance().findById(1));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+
+       Vehicle vehicle = new Vehicle(7,"lenouveua", "model pas ouf", 3);
+        try {
+            System.out.println(VehicleService.getInstance().findAll());
         } catch (ServiceException e) {
             e.printStackTrace();
         }
 
         try {
-            System.out.println(VehicleService.getInstance().findAll());
+            System.out.println(VehicleService.getInstance().findById(1));
         } catch (ServiceException e) {
             e.printStackTrace();
-        }*/
-//
-//        try {
-//            System.out.println(VehicleService.getInstance().findById(2));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-//    try {
-//            System.out.println(ClientService.getInstance().count());
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
+        }
+
+       Reservation reservation = new Reservation(8,5,1,LocalDate.now(),LocalDate.now());
+        try {
+            System.out.println(ReservationService.getInstance().findAll());
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println(ReservationService.getInstance().findById(1));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
     }
 }
 
