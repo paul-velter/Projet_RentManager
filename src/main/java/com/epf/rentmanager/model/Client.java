@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class Client {
 
-    public long id;
-    public String first_name;
-    public String last_name;
+    private long id;
+    private String first_name;
+    private String last_name;
 
-    public String email;
-    public LocalDate birth_date;
+    private String email;
+    private LocalDate birth_date;
 
     public Client() {
     }

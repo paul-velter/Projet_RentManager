@@ -2,11 +2,10 @@ package com.epf.rentmanager.model;
 
 public class Vehicle {
 
-    public long id;
-
-    public String constructor;
-    public String modele;
-    public int nb_places;
+    private long id;
+    private String constructor;
+    private String modele;
+    private int nb_places;
 
     public Vehicle() {
 

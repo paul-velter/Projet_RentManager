@@ -38,8 +38,8 @@
                                 <tr>
                                 <c:forEach items="${reservations}" var= "reservation">
                                     <td>${reservation.id}</td>
-                                    <td>${reservation.getConstructroModeleVehicle(reservation.vehicle_id)}</td>
-                                    <td>${reservation.getFirtLastNameClient(reservation.client_id)}</td>
+                                    <td>${reservation.getConstructroModeleVehicle(reservation.vehicle)}</td>
+                                    <td>${reservation.getFirtLastNameClient(reservation.client)}</td>
                                     <td>${reservation.start}</td>
                                     <td>${reservation.end}</td>
                                     <td>

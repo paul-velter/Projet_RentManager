@@ -1,5 +1,6 @@
 package com.epf.rentmanager.model;
 
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
@@ -8,29 +9,28 @@ import java.time.LocalDate;
 
 public class Reservation {
 
-    public long id;
-    public long client_id;
-    public long vehicle_id;
+    private long id;
+    private Client client;
+    private Vehicle vehicle;
+    private LocalDate start;
+    private LocalDate end;
 
-    public LocalDate start;
-
-    public LocalDate end;
-
+    private ClientDao clientDao;
     public Reservation() {
 
     }
 
-    public Reservation(long id, long client_id, long vehicle_id, LocalDate start, LocalDate end) {
+    public Reservation(long id, Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
         this.id = id;
-        this.client_id = client_id;
-        this.vehicle_id = vehicle_id;
+        this.client = client;
+        this.vehicle = vehicle;
         this.start = start;
         this.end = end;
     }
 
-    public Reservation(long client_id, long vehicle_id, LocalDate start, LocalDate end) {
-        this.client_id = client_id;
-        this.vehicle_id = vehicle_id;
+    public Reservation(Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
+        this.client = client;
+        this.vehicle = vehicle;
         this.start = start;
         this.end = end;
     }
@@ -43,29 +43,31 @@ public class Reservation {
         this.id = id;
     }
 
-    public long getClient_id() {
-        return client_id;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClient_id(long client_id) {
-        this.client_id = client_id;
+    public long getClientId(){
+        return client.getId();
     }
 
-    public long getVehicle_id() {
-        return vehicle_id;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public void setVehicle_id(long vehicle_id) {
-        this.vehicle_id = vehicle_id;
+    public Vehicle getVehicle() {return vehicle;}
+
+    public long getVehicleId(){
+        return vehicle.getId();
     }
-    public String getFirtLastNameClient(long client_id) throws ServiceException {
-        ClientService clientService = ClientService.getInstance();
-        Client client = clientService.findById(client_id);
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+    public String getFirtLastNameClient(Client client) throws ServiceException {;
         return client.getFirst_name() + " " + client.getLast_name();
     }
-    public String getConstructroModeleVehicle(long vehicle_id) throws ServiceException {
-        VehicleService vehicleService = VehicleService.getInstance();
-        Vehicle vehicle = vehicleService.findById(vehicle_id);
+    public String getConstructroModeleVehicle(Vehicle vehicle) throws ServiceException {
         return vehicle.getConstructor() + " " + vehicle.getModele();
     }
     public LocalDate getStart() {
@@ -89,8 +91,8 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", client_id=" + client_id +
-                ", vehicle_id=" + vehicle_id +
+                ", client_id=" + client +
+                ", vehicle_id=" + vehicle +
                 ", start=" + start +
                 ", end=" + end +
                 '}';

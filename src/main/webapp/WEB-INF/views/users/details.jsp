@@ -56,7 +56,7 @@
                                         <tr>
                                         <c:forEach items="${listereservations}" var= "reservation">
                                             <td>${reservation.id}</td>
-                                            <td>${reservation.getConstructroModeleVehicle(reservation.vehicle_id)}</td>
+                                            <td>${reservation.getConstructroModeleVehicle(reservation.vehicle)}</td>
                                             <td>${reservation.start}</td>
                                             <td>${reservation.end}</td>
                                         </tr>
