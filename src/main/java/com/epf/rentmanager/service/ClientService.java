@@ -67,4 +67,12 @@ public class ClientService {
 		}
 	}
 
+	public List<String> findAllEmails() throws ServiceException{
+		try{
+			return clientDao.findAllEmails();
+		}catch (DaoException e) {
+			throw new ServiceException();
+		}
+	}
+
 }

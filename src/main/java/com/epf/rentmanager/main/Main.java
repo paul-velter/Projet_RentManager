@@ -19,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ApplicationContext context=new AnnotationConfigApplicationContext(AppConfiguration.class);
+        ApplicationContext context= new AnnotationConfigApplicationContext(AppConfiguration.class);
         ClientService clientService = context.getBean(ClientService.class);
         VehicleService vehicleService = context.getBean(VehicleService.class);
         ReservationService reservationService = context.getBean(ReservationService.class);
@@ -27,43 +27,10 @@ public class Main {
         Client client = new Client(8,"client8","client8","nom.prérom@gmail.com",LocalDate.now());
 
         try {
-            System.out.println(clientService.findAll());
+            System.out.println(clientService.findAllEmails());
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-
-//        try {
-//            System.out.println(clientService.findById(1));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-
-       Vehicle vehicle = new Vehicle(7,"lenouveua", "model pas ouf", 3);
-        try {
-            System.out.println(vehicleService.findAll());
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
-
-//        try {
-//            System.out.println(VehicleService.getInstance().findById(1));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-
-       Reservation reservation = new Reservation(8,client,vehicle,LocalDate.now(),LocalDate.now());
-        try {
-            System.out.println(reservationService.findAll());
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
-
-//        try {
-//            System.out.println(ReservationService.getInstance().findById(1));
-//        } catch (ServiceException e) {
-//            e.printStackTrace();
-//        }
-
 
     }
 

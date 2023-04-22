@@ -1,3 +1,4 @@
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\DeleteVehicleServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
@@ -7,15 +8,19 @@ C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\EditClientServlet.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\AgeException.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\EditReservationServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\main\Main.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleServlet.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\DetailReservationServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\DeleteReservationServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
+C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\DeleteClientServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\AddReservationServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\AddVehicleServlet.java
 C:\Users\paulv\OneDrive\Documents\Cours\4A\Language Java\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\EditVehicleServlet.java

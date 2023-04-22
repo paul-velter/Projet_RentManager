@@ -4,6 +4,7 @@ com\epf\rentmanager\servlet\EditVehicleServlet.class
 com\epf\rentmanager\model\Reservation.class
 com\epf\rentmanager\config\AppConfiguration.class
 com\epf\rentmanager\servlet\EditReservationServlet.class
+com\epf\rentmanager\servlet\DeleteClientServlet.class
 com\epf\rentmanager\exception\DaoException.class
 com\epf\rentmanager\exception\ServiceException.class
 com\epf\rentmanager\service\VehicleService.class
@@ -17,12 +18,16 @@ com\epf\rentmanager\model\Vehicle.class
 com\epf\rentmanager\servlet\HomeServlet.class
 com\epf\rentmanager\dao\ClientDao.class
 com\epf\rentmanager\servlet\DetailClientServlet.class
+com\epf\rentmanager\servlet\DeleteReservationServlet.class
 com\epf\rentmanager\config\WebConfiguration.class
+com\epf\rentmanager\exception\AgeException.class
 com\epf\rentmanager\service\ReservationService.class
 com\epf\rentmanager\utils\IOUtils.class
 com\epf\rentmanager\persistence\FillDatabase.class
+com\epf\rentmanager\servlet\DeleteVehicleServlet.class
 com\epf\rentmanager\service\ClientService.class
 com\epf\rentmanager\servlet\AddReservationServlet.class
+com\epf\rentmanager\servlet\DetailReservationServlet.class
 com\epf\rentmanager\servlet\ClientServlet.class
 com\epf\rentmanager\dao\VehicleDao.class
 com\epf\rentmanager\model\Client.class

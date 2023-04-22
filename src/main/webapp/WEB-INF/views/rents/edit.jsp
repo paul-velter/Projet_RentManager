@@ -32,9 +32,8 @@
 
                                     <div class="col-sm-10">
                                         <select class="form-control" id="car" name="car">
-                                            <option value="${reservation.vehicle.id}">${reservation.vehicle.constructor} ${reservation.vehicle.modele}</option>
                                             <c:forEach items="${vehicles}" var= "vehicle">
-                                                <option value="${vehicle.id}">${vehicle.constructor} ${vehicle.modele}</option>
+                                                <option value="${vehicle.id}" ${vehicle.id == reservation.vehicle.id ? 'selected' : ''}>${vehicle.constructor} ${vehicle.modele}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -45,9 +44,8 @@
                                     <div class="col-sm-10">
 
                                       <select class="form-control" id="client" name="client">
-                                        <option value="${reservation.client.id}">${reservation.client.first_name} ${reservation.client.last_name}</option>
                                         <c:forEach items="${clients}" var= "client">
-                                            <option value="${client.id}">${client.first_name} ${client.last_name}</option>
+                                            <option value="${client.id}" ${client.id == reservation.client.id ? 'selected' : ''}>${client.first_name} ${client.last_name}</option>
                                         </c:forEach>
                                       </select>
                                     </div>
