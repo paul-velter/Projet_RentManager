@@ -5,8 +5,9 @@ public class AgeException extends Exception{
     public AgeException(){
 
     }
+
     @Override
-    public String toString() {
+    public String getMessage() {
         return "Le client doit avoir plus de 18 ans";
     }
 }

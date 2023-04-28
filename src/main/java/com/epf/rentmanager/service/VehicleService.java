@@ -1,5 +1,6 @@
 package com.epf.rentmanager.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
@@ -66,5 +67,13 @@ public class VehicleService {
 			throw new ServiceException();
 		}
 	}
-	
+
+	public List<LocalDate> reservationDates(Vehicle vehicle) throws ServiceException {
+		try {
+			return vehicleDao.reservationDates(vehicle);
+		} catch (DaoException e) {
+			throw new ServiceException();
+		}
+	}
+
 }

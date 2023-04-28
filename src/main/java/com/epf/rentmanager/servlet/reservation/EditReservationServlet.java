@@ -1,5 +1,8 @@
 package com.epf.rentmanager.servlet.reservation;
 
+import com.epf.rentmanager.exception.AlreadyReservedException;
+import com.epf.rentmanager.exception.ReservationDuration30DaysException;
+import com.epf.rentmanager.exception.ReservationDuration7DaysException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
@@ -58,16 +61,31 @@ public class EditReservationServlet extends HttpServlet {
             Vehicle vehicle = vehicleService.findById(vehicleId);
             LocalDate start = LocalDate.parse(request.getParameter("begin"));
             LocalDate end = LocalDate.parse(request.getParameter("end"));
-
+            if (vehicleService.reservationDates(vehicle).contains(start) || vehicleService.reservationDates(vehicle).contains(start)){
+                throw new AlreadyReservedException();
+            }
+            if (reservationService.countConcecutiveReservationDays(reservationService.testReservationDates(reservationService.reservationDatesByClientIdAndVehicleId(client, vehicle), start, end) ) > 7){
+                throw new ReservationDuration7DaysException();
+            }
+            if (reservationService.countConcecutiveReservationDays(reservationService.testReservationDates(vehicleService.reservationDates(vehicle), start, end)) > 30){
+                throw new ReservationDuration30DaysException();
+            }
             Reservation reservation = new Reservation(id,client,vehicle,start,end);
             reservationService.edit(reservation);
             request.setAttribute("reservations", reservationService.findAll());
-
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/list.jsp").forward(request, response);
 
         } catch (ServiceException e) {
             throw new ServletException();
-        }finally {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/list.jsp").forward(request, response);
+        } catch (AlreadyReservedException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
+        } catch (ReservationDuration7DaysException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
+        } catch (ReservationDuration30DaysException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
         }
     }
 }

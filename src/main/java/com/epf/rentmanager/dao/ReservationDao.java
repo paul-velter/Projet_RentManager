@@ -14,7 +14,7 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
-import com.epf.rentmanager.service.ClientService;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -33,6 +33,7 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
+	private static final String FIND_RESERVATION_DATES_BY_CLIENT_AND_VEHICLE_QUERY = "SELECT debut, fin FROM Reservation WHERE client_id=? AND vehicle_id=?;";
 		
 	public long create(Reservation reservation) throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection();
@@ -215,5 +216,56 @@ public class ReservationDao {
 		} catch (SQLException e) {
 			throw new DaoException();
 		}
+	}
+
+	public List<LocalDate> reservationDatesByClientIdAndVehicleId(Client client, Vehicle vehicle) throws DaoException{
+		List<LocalDate> dates = new ArrayList<LocalDate>();
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement ps = connection.prepareStatement(FIND_RESERVATION_DATES_BY_CLIENT_AND_VEHICLE_QUERY);) {
+
+			ps.setObject(1, client.getId());
+			ps.setObject(2, vehicle.getId());
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				LocalDate start = rs.getDate("debut").toLocalDate();
+				LocalDate end = rs.getDate("fin").toLocalDate();
+				for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
+					dates.add(date);
+				}
+			}
+
+			return dates;
+
+		} catch (SQLException e) {
+			throw new DaoException();
+		}
+	}
+
+	public List<LocalDate> testReservationDates(List<LocalDate> reservation_dates, LocalDate start, LocalDate end) throws DaoException{
+		List<LocalDate> reservation_dates_test = reservation_dates;
+		for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
+			reservation_dates_test.add(date);
+		}
+			return reservation_dates_test;
+	}
+
+
+	public int countConcecutiveReservationDays (List<LocalDate> reservation_dates) throws DaoException{
+		int maxConsecutiveDays = 1;
+		int currentConsecutiveDays = 1;
+		for (int i = 0; i < reservation_dates.size() - 1; i++) {
+			LocalDate currentDate = reservation_dates.get(i);
+			LocalDate nextDate = reservation_dates.get(i + 1);
+
+			if (nextDate.equals(currentDate.plusDays(1))) {
+				currentConsecutiveDays++;
+			} else {
+				maxConsecutiveDays = Math.max(maxConsecutiveDays, currentConsecutiveDays);
+				currentConsecutiveDays = 1;
+			}
+		}
+		maxConsecutiveDays = Math.max(maxConsecutiveDays, currentConsecutiveDays);
+		return maxConsecutiveDays;
 	}
 }

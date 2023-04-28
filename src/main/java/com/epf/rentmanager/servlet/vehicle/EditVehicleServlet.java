@@ -1,9 +1,8 @@
 package com.epf.rentmanager.servlet.vehicle;
 
+import com.epf.rentmanager.exception.SeatsNumberException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
-import com.epf.rentmanager.service.ClientService;
-import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -44,15 +43,18 @@ public class EditVehicleServlet extends HttpServlet {
             String constructor = request.getParameter("manufacturer");
             String modele = request.getParameter("modele");
             int seats = Integer.parseInt(request.getParameter("seats"));
-
+            if (seats<2 || seats>9){
+                throw new SeatsNumberException();
+            }
             Vehicle vehicle = new Vehicle(id,constructor, modele,seats);
             vehicleService.edit(vehicle);
             request.setAttribute("vehicles", vehicleService.findAll());
-
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/list.jsp").forward(request, response);
         } catch (ServiceException e) {
             throw new ServletException();
-        }finally {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/list.jsp").forward(request, response);
+        } catch (SeatsNumberException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/edit.jsp").forward(request, response);
         }
     }
 }

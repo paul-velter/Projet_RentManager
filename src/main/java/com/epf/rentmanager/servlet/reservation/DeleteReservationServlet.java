@@ -26,7 +26,7 @@ public class DeleteReservationServlet extends HttpServlet {
         try {
             long id = Long.parseLong(request.getParameter("id"));
             reservationService.delete(reservationService.findById(id));
-            request.setAttribute("reservation", reservationService.findAll());
+            request.setAttribute("reservations", reservationService.findAll());
             this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/list.jsp").forward(request, response);
         } catch (ServiceException e) {
             throw new ServletException();

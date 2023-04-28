@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.NameLenghtException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.persistence.ConnectionManager;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ public class ClientDao {
 
     private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
     private static final String EDIT_CLIENT_QUERY = "UPDATE Client SET nom=?, prenom=?, email=?, naissance=? WHERE id=?;";
-    private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
+    private static final String DELETE_CLIENT_QUERY = "DELETE FROM Reservation WHERE client_id IN (SELECT id FROM Client WHERE id = ?); DELETE FROM Client WHERE id = ?;";
     private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
     private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 
@@ -31,6 +32,7 @@ public class ClientDao {
 
             ps.setString(1, client.getFirst_name());
             ps.setString(2, client.getLast_name());
+
             ps.setString(3, client.getEmail());
             ps.setObject(4, client.getBirth_date());
             ps.executeUpdate();
@@ -63,9 +65,10 @@ public class ClientDao {
     public long delete(Client client) throws DaoException {
 
         try(Connection connection = ConnectionManager.getConnection();
-            PreparedStatement ps = connection.prepareStatement(DELETE_CLIENT_QUERY);){
-
+            PreparedStatement ps = connection.prepareStatement(DELETE_CLIENT_QUERY);)
+        {
             ps.setLong(1, client.getId());
+            ps.setLong(2, client.getId());
             ps.executeUpdate();
 
             return 0;

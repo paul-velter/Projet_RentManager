@@ -1,5 +1,8 @@
 package com.epf.rentmanager.servlet.client;
 
+import com.epf.rentmanager.exception.AgeException;
+import com.epf.rentmanager.exception.EmailAlreadyExist;
+import com.epf.rentmanager.exception.NameLenghtException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 
 @WebServlet("/users/edit")
 public class EditClientServlet  extends HttpServlet{
@@ -29,6 +33,7 @@ public class EditClientServlet  extends HttpServlet{
         try {
             long id = Long.parseLong(request.getParameter("id"));
             request.setAttribute("client", clientService.findById(id));
+
         } catch (ServiceException e) {
             throw new ServletException();
         } finally {
@@ -42,17 +47,33 @@ public class EditClientServlet  extends HttpServlet{
             long id = Long.parseLong(request.getParameter("id"));
             String first_name = request.getParameter("first_name");
             String last_name = request.getParameter("last_name");
+            if (first_name.length()<3 || last_name.length()<3){
+                throw new NameLenghtException();
+            }
             String email = request.getParameter("email");
+            if (clientService.findAllEmails().contains(email)){
+                throw new EmailAlreadyExist();
+            }
             LocalDate birth_date = LocalDate.parse(request.getParameter("birth_date"));
-
+            if (Period.between(birth_date, LocalDate.now()).getYears() < 18) {
+                throw new AgeException();
+            }
             Client client = new Client(id, first_name, last_name, email, birth_date);
             clientService.edit(client);
             request.setAttribute("clients", clientService.findAll());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
 
         } catch (ServiceException e) {
             throw new ServletException();
-        }finally {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
+        } catch (AgeException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
+        } catch (EmailAlreadyExist e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
+        } catch (NameLenghtException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
         }
     }
 }

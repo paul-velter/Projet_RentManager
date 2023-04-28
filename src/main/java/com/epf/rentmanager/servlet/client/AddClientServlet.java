@@ -1,6 +1,8 @@
 package com.epf.rentmanager.servlet.client;
 
 import com.epf.rentmanager.exception.AgeException;
+import com.epf.rentmanager.exception.EmailAlreadyExist;
+import com.epf.rentmanager.exception.NameLenghtException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
@@ -41,7 +43,13 @@ public class AddClientServlet extends HttpServlet {
 
             String first_name = request.getParameter("first_name");
             String last_name = request.getParameter("last_name");
+            if (first_name.length()<3 || last_name.length()<3){
+                throw new NameLenghtException();
+            }
             String email = request.getParameter("email");
+            if (clientService.findAllEmails().contains(email)){
+                throw new EmailAlreadyExist();
+            }
             LocalDate birth_date = LocalDate.parse(request.getParameter("birth_date"));
             if (Period.between(birth_date, LocalDate.now()).getYears() < 18) {
                 throw new AgeException();
@@ -54,7 +62,13 @@ public class AddClientServlet extends HttpServlet {
         } catch (ServiceException e) {
             throw new ServletException();
         } catch (AgeException e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+        }catch (EmailAlreadyExist e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+        } catch (NameLenghtException e) {
+            request.setAttribute("errorMessage", e.getMessage());
             this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
         }
     }

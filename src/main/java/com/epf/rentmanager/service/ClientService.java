@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.NameLenghtException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class ClientService {
 	private ClientDao clientDao;
 	public static ClientService instance;
 
-	private ClientService(ClientDao clientDao){
+	public ClientService(ClientDao clientDao){
 		this.clientDao = clientDao;
 	}
 
@@ -24,7 +25,7 @@ public class ClientService {
 			return clientDao.create(client);
 		} catch (DaoException e){
 			throw new ServiceException();
-		}
+		} 
 	}
 
 	public long edit(Client client) throws ServiceException {

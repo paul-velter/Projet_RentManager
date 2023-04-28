@@ -24,10 +24,16 @@ public class Main {
         VehicleService vehicleService = context.getBean(VehicleService.class);
         ReservationService reservationService = context.getBean(ReservationService.class);
 
-        Client client = new Client(8,"client8","client8","nom.prérom@gmail.com",LocalDate.now());
+        try {
+            System.out.println(reservationService.findAll());
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
 
         try {
-            System.out.println(clientService.findAllEmails());
+            Vehicle vehicle = vehicleService.findById(1);
+            Client client = clientService.findById(1);
+            System.out.println(reservationService.reservationDatesByClientIdAndVehicleId(client, vehicle));
         } catch (ServiceException e) {
             e.printStackTrace();
         }

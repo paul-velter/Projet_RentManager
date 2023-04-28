@@ -8,6 +8,7 @@ import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -85,6 +86,28 @@ public class ReservationService {
     public int countResaByClientId(long clientId) throws ServiceException {
         try {
             return reservationDao.countResaByClientId(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public List<LocalDate> reservationDatesByClientIdAndVehicleId (Client client, Vehicle vehicle) throws ServiceException{
+        try {
+            return reservationDao.reservationDatesByClientIdAndVehicleId(client, vehicle);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+    public List<LocalDate> testReservationDates (List<LocalDate> reservation_dates, LocalDate start, LocalDate end) throws ServiceException{
+        try {
+            return reservationDao.testReservationDates(reservation_dates, start, end);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+    public int countConcecutiveReservationDays (List<LocalDate> reservation_dates) throws ServiceException{
+        try {
+            return reservationDao.countConcecutiveReservationDays(reservation_dates);
         } catch (DaoException e) {
             throw new ServiceException();
         }
